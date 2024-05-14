@@ -38,9 +38,20 @@ class Producto
             is >> producto.nombre >> producto.precio >> producto.existencia;
             return is;
         }
+
+        bool operator == (Producto& producto)
+        {
+            return nombre == producto.nombre;
+        }
 };
 
-class Tienda {
+class Tienda
+{
+    private:
+        static const int MAX_PRODUCTOS = 100;
+        Producto productos[MAX_PRODUCTOS];
+        int numProductos = 0;
+
     public:
         void agregarProducto(const Producto& producto)
         {
@@ -50,7 +61,7 @@ class Tienda {
             }
             else
             {
-                cerr << "No se pueden agregar más productos, límite alcanzado." << endl;
+                cout << "No se pueden agregar más productos, límite alcanzado." << endl;
             }
         }
 
@@ -77,7 +88,7 @@ class Tienda {
             }
             else
             {
-                cerr << "No se pudo abrir el archivo " << nombreArchivo << endl;
+                cout << "No se pudo abrir el archivo " << nombreArchivo << endl;
             }
         }
 
@@ -97,14 +108,9 @@ class Tienda {
             }
             else
             {
-                cerr << "No se pudo abrir el archivo " << nombreArchivo << endl;
+                cout << "No se pudo abrir el archivo " << nombreArchivo << endl;
             }
         }
-
-    private:
-        static const int MAX_PRODUCTOS = 100;
-        Producto productos[MAX_PRODUCTOS];
-        int numProductos = 0;
 };
 
 #endif
